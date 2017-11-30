@@ -3,9 +3,9 @@ echo "##########################################################################
 echo "# These are instructions for how to build a DISA STIG Compliant overcloud image #"
 echo "# This will work with OSP11  - please contact donny@redhat.com with issues      #"
 echo "#################################################################################"
-read -p "RHN Username: " name
-read -s -p "RHN password: (doesn't echo)" password
-read -p "Subscritpion pool id: " pool_id
+read -p "RHN Username:" name
+read -s -p "RHN password (doesn't echo):" password ; echo
+read -p "Subscritpion pool id:" pool_id
 rm -f overcloud-full* ironic-python-agent*
 echo "##########################"
 echo "# Getting Factory Images #"
@@ -16,6 +16,7 @@ echo "##############################"
 echo "# Creating Partitioned Image #"
 echo "##############################"
 ./whole-disk-image.py
+mv /tmp/overcloud-full-partitioned.qcow2 /home/stack/stig-images/overcloud-full.qcow2
 echo "####################################"
 echo "# Subscribing and pulling packages #"
 echo "####################################"
@@ -49,9 +50,9 @@ echo "######################################"
 echo "# Uploading Hardened Image to Glance #"
 echo "######################################"
 source ~/stackrc
+for i in $(openstack image list |grep overcloud |awk '{print $2}'); do openstack image delete $i ; done
 openstack overcloud image upload --update-existing --image-path $(pwd)
+openstack baremetal configure boot
 echo "#################################"
 echo "# Your Image is ready to deploy #"
 echo "#################################"
-
-
