@@ -12,7 +12,6 @@ virt-customize -a overcloud-full.qcow2 --run-command "subscription-manager attac
 virt-customize -a overcloud-full.qcow2 --run-command 'subscription-manager repos --disable "*"'
 virt-customize -a overcloud-full.qcow2 --run-command 'subscription-manager repos --enable rhel-7-server-rpms'
 virt-customize -a overcloud-full.qcow2 --run-command 'yum -y install openscap-scanner scap-security-guide aide'
-virt-customize -a overcloud-full.qcow2 --upload U_Red_Hat_Enterprise_Linux_7_V1R1_STIG_SCAP_1-2_Benchmark.xml:/opt
 #############################################
 # The Next command will generate a          #
 # bash script to run on our overcloud image #
