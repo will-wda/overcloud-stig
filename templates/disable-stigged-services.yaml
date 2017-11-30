@@ -7,5 +7,5 @@ resource_registry:
   OS::TripleO::Services::AuditD: OS::Heat::None
 
 parameter_defaults:
-  SnmpdReadonlyUserName: cyberARMY
-  SnmpdReadonlyUserPassword: ARMYcyber
+  SnmpdReadonlyUserName: SUPERsecrectPASSword
+  SnmpdReadonlyUserPassword: SUPERsecrectPASSword
