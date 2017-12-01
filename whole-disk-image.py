@@ -13,7 +13,7 @@ g = guestfs.GuestFS(python_return_dict=True)
 # import old and new images
 print("Creating new repartitioned image")
 g.add_drive_opts("overcloud-full.qcow2", format="qcow2", readonly=1)
-g.disk_create("/tmp/overcloud-full-partitioned.qcow2", "qcow2", 23 * 1024 * 1024 * 1024) #10.2G
+g.disk_create("/tmp/overcloud-full-partitioned.qcow2", "qcow2", 8 * 1024 * 1024 * 1024) #10.2G
 g.add_drive_opts("/tmp/overcloud-full-partitioned.qcow2", format="qcow2", readonly=0)
 g.launch()
 
@@ -25,12 +25,12 @@ g.part_add("/dev/sdb", "primary", 616449, -1)
 
 g.pvcreate("/dev/sdb2")
 g.vgcreate("vg", ['/dev/sdb2', ])
-g.lvcreate("var", "vg", 5 * 1024)
-g.lvcreate("var_log", "vg", 10 * 1024)
-g.lvcreate("var_log_audit", "vg", 2 * 1024)
+g.lvcreate("var", "vg", 2 * 1024)
+g.lvcreate("var_log", "vg", 250)
+g.lvcreate("var_log_audit", "vg", 250)
 g.lvcreate("swap", "vg", 250)
 g.lvcreate("home", "vg", 100)
-g.lvcreate("root", "vg", 4 * 1024)
+g.lvcreate("root", "vg", 4 *1024)
 g.part_set_bootable("/dev/sdb", 1, True)
 
 # add filesystems to volumes

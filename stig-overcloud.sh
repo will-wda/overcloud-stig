@@ -52,6 +52,7 @@ echo "######################################"
 echo "# Uploading Hardened Image to Glance #"
 echo "######################################"
 source ~/stackrc
+openstack overcloud plan delete overcloud
 for i in $(openstack image list |grep overcloud |awk '{print $2}'); do openstack image delete $i ; done
 openstack overcloud image upload --whole-disk --os-image-name overcloud-full.qcow2
 openstack baremetal configure boot
