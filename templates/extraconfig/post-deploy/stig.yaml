@@ -14,8 +14,6 @@ resources:
           #!/bin/sh
           chmod 0600 /etc/ssh/ssh_host*key
           sed -i "s/public/SUPERsecretPASSWORD/g" /etc/snmp/snmpd.conf
-          oscap xccdf eval --profile xccdf_mil.disa.stig_profile_MAC-1_Public --results scan-results-stig.xml --report scan-results-stig.html /opt/U_Red_Hat_Enterprise_Linux_7_V1R1_STIG_SCAP_1-2_Benchmark.xml
-
   ExtraDeployments:
     type: OS::Heat::SoftwareDeploymentGroup
     properties:
