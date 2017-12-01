@@ -2,6 +2,8 @@
 Copy the templates folder into your current templates
 
 You need to have the following packages installed for this to work properly
+The image is expected to be build on a functional director. 
+
     sudo yum -y install libguestfs-xfs libguestfs-tools
 
 Add to following to your deployment script
