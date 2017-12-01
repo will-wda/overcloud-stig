@@ -8,7 +8,7 @@ The image is expected to be build on a functional director.
 
 Add to following to your deployment script
 
-    -e /home/stack/templates/stig-fix.yaml \
+    -e /home/stack/templates/disable-stigged-services.yaml \
     -e /home/stack/templates/post-deploy-stig.yaml \
 
 Make the script executable
