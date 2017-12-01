@@ -43,12 +43,12 @@ swap_volume = volumes[2]
 count = 0
 for volume in volumes:
   if count!=2:
-    g.mkfs('ext4', volume)
+    g.mkfs('xfs', volume)
     ids[keys[count]] = g.vfs_uuid(volume)
   count +=1
 
 # create filesystem on boot and swap
-g.mkfs('ext4', '/dev/sdb1')
+g.mkfs('xfs', '/dev/sdb1')
 g.mkswap_opts(volumes[2])
 ids['swap'] = g.vfs_uuid(volumes[2])
 
@@ -92,13 +92,13 @@ for folder in folders_to_copy:
 # create /etc/fstab file
 print("Generating fstab content")
 fstab_content = """
-UUID={boot_id} /boot ext4 defaults 0 2
-UUID={root_id} / ext4 defaults 0 1
+UUID={boot_id} /boot xfs defaults 0 2
+UUID={root_id} / xfs defaults 0 1
 UUID={swap_id} none swap sw 0 0
-UUID={var_log_id} /var/log ext4 defaults 0 2
-UUID={var_log_audit_id} /var/log/audit ext4 defaults 0 2
-UUID={home_id} /home ext4 defaults 0 2
-UUID={var_id} /var ext4 defaults 0 2
+UUID={var_log_id} /var/log xfs defaults 0 2
+UUID={var_log_audit_id} /var/log/audit xfs defaults 0 2
+UUID={home_id} /home xfs defaults 0 2
+UUID={var_id} /var xfs defaults 0 2
 """.format(
   boot_id=g.vfs_uuid('/dev/sdb1'),
   root_id=ids['root'],
