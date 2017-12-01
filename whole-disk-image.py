@@ -125,11 +125,12 @@ g.mkdir('/boot')
 g.mkdir('/var')
 g.mount('/dev/sdb1', '/boot')
 g.mount(volumes[0], '/var')
-
+g.mount(volumes[1], '/var/log')
 
 # do a selinux relabel
 g.selinux_relabel('/etc/selinux/targeted/contexts/files/file_contexts', '/', force=True)
 g.selinux_relabel('/etc/selinux/targeted/contexts/files/file_contexts', '/var', force=True)
+g.selinux_relabel('/etc/selinux/targeted/contexts/files/file_contexts', '/var/log', force=True)
 
 g.sh('grub2-install --target=i386-pc /dev/sdb')
 g.sh('grub2-mkconfig -o /boot/grub2/grub.cfg')
@@ -146,10 +147,8 @@ for kernel in kernels:
   print("Updating dracut to include modules in kernel %s" % kernel)
   g.sh('dracut -f /boot/initramfs-%s.img %s --force' % (kernel, kernel))
 g.umount('/boot')
-g.umount('/var')
 g.umount('/var/log')
-g.umount('/var/log/audit')
-g.umount('/home')
+g.umount('/var')
 g.umount('/')
 
 # close images

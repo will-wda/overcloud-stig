@@ -12,11 +12,6 @@ echo "# Getting Factory Images #"
 echo "##########################"
 for i in /usr/share/rhosp-director-images/overcloud-full-latest-11.0.tar /usr/share/rhosp-director-images/ironic-python-agent-latest-11.0.tar; do tar -xvf $i; done
 sync
-echo "##############################"
-echo "# Creating Partitioned Image #"
-echo "##############################"
-./whole-disk-image.py
-mv /tmp/overcloud-full-partitioned.qcow2 /home/stack/stig-images/overcloud-full.qcow2
 echo "####################################"
 echo "# Subscribing and pulling packages #"
 echo "####################################"
@@ -45,13 +40,20 @@ echo "#########################################"
 echo "# Unregistering and Unsubscribing Image #"
 echo "#########################################"
 virt-customize -a overcloud-full.qcow2 --run-command 'subscription-manager remove --all'
-virt-customize --selinux-relabel -a overcloud-full.qcow2 --run-command 'subscription-manager unregister'
+virt-customize -a overcloud-full.qcow2 --run-command 'subscription-manager unregister'
+echo "##############################"
+echo "# Creating Partitioned Image #"
+echo "##############################"
+./whole-disk-image.py
+mv /tmp/overcloud-full-partitioned.qcow2 ./overcloud-full.qcow2
+sync
+virt-customize --selinux-relabel -a overcloud-full.qcow2
 echo "######################################"
 echo "# Uploading Hardened Image to Glance #"
 echo "######################################"
 source ~/stackrc
 for i in $(openstack image list |grep overcloud |awk '{print $2}'); do openstack image delete $i ; done
-openstack overcloud image upload --update-existing --image-path $(pwd)
+openstack overcloud image upload --whole-disk --os-image-name overcloud-full.qcow2
 openstack baremetal configure boot
 echo "#################################"
 echo "# Your Image is ready to deploy #"
