@@ -11,7 +11,9 @@ Add to following to your deployment script
     -e /home/stack/templates/stig-fix.yaml \
     -e /home/stack/templates/post-deploy-stig.yaml \
 
-chmod +x stig-overcloud.sh
+Make the script executable
+
+    chmod +x stig-overcloud.sh
 
 Execute the stig-overcloud script
 Get a cup of coffee
