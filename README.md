@@ -1,6 +1,9 @@
 # Setup
 Copy the templates folder into your current templates
 
+You need to have the following packages installed for this to work properly
+    sudo yum -y install libguestfs-xfs libguestfs-tools
+
 Add to following to your deployment script
 
     -e /home/stack/templates/stig-fix.yaml \
