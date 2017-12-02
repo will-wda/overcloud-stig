@@ -41,6 +41,7 @@ echo "# Unregistering and Unsubscribing Image #"
 echo "#########################################"
 virt-customize -a overcloud-full.qcow2 --run-command 'subscription-manager remove --all'
 virt-customize -a overcloud-full.qcow2 --run-command 'subscription-manager unregister'
+# Disabled partitioning, Nova scheduler issues
 #echo "##############################"
 #echo "# Creating Partitioned Image #"
 #echo"##############################"
