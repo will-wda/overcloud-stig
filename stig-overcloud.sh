@@ -1,11 +1,10 @@
 #!/bin/bash
-export image=rhel-server-7.4-x86_64-kvm.qcow2
+export image=overcloud-full.qcow2
 echo "#################################################################################"
 echo "# These are instructions for how to build a DISA STIG Compliant overcloud image #"
 echo "# This will work with OSP11  - please contact donny@redhat.com with issues      #"
 echo "#################################################################################"
 read -p "Skip questions and use export variables? (y/n)" skipinquisition
-export skipinquisition=y
 if [[ $skipinquisition =~ ^[Nn]$ ]]
 then
   read -p "RHN Username:" name
@@ -15,24 +14,24 @@ then
   read -p "Select a Profile (copy and paste):" profile
   read -p "Do you want to apply addtional hardening from ssg-supplemental? (y/n)" morehard
   read -p "Do you want use whole cloud images? (y/n)" wholecloud
-  read -p "Are you stigging a generic image? (y/n)" genericimage
+  read -p "Should I start from a fresh overcloud image (no for generic or inplace images) ? (y/n)" genericimage
 fi
 ########################################################
 # Enter these values if you want to skip the questions #
 ########################################################
 if [[ $skipinquisition =~ ^[Yy]$ ]]
 then
-  export name=yournamehere
-  export password=supersecret
-  export pool_id=mycoolpool
+  export name=rhnusername
+  export password=rhnpassword
+  export pool_id=rhnpoolid
   export profile=stig-rhel7-disa
   export morehard=y
   export wholecloud=n
   export genericimage=n
 fi
-if [[ $genericimage =~ ^[Nn]$ ]]
+if [[ $genericimage =~ ^[Yy]$ ]]
 then
-  rm -f overcloud-full* ironic-python-agent*
+  rm -f overcloud-full*
   echo "##########################"
   echo "# Getting Factory Images #"
   echo "##########################"
