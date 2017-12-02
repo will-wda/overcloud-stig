@@ -55,4 +55,4 @@ OOB. It takes ten minutes... SECURE YOUR STUFF
 ## Issues
 
 Currently there is a scheduling issue when deploying using whole cloud images
-So by default this has been disabled
+So by default whole-cloud-images has been disabled
