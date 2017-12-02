@@ -26,9 +26,16 @@ The script will then ask
 If you choose to execute the addtional hardening, please ensure ssg-supplemental.sh contains the hardening scripts you want to be performed. 
 
 Execute the stig-overcloud script
+
+    ./stig-overcloud.sh
+
 Get a cup of coffee
+
 Deploy your stigged image
+
 Get another cup of coffee
+
+Rock on
 
 ### Prereqs
 You will need your RHN username, password and a pool id to get software from Red Hat for the overcloud image
