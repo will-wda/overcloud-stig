@@ -4,7 +4,7 @@ Copy the templates folder into your current templates
 You need to have the following packages installed for this to work properly
 The image is expected to be build on a functional director. 
 
-    sudo yum -y install libguestfs-xfs libguestfs-tools
+    sudo yum -y install libguestfs-xfs libguestfs-tools openscap-scanner scap-security-guide
 
 Add to following to your deployment script
 
@@ -15,15 +15,37 @@ Make the script executable
 
     chmod +x stig-overcloud.sh
 
+The script will then ask
+
+    RHN Username:
+    RHN password (doesn't echo):
+    Subscritpion pool id:
+    Select a Profile (copy and paste):
+    Do you want to apply addtional hardening from ssg-supplemental?
+
+If you choose to execute the addtional hardening, please ensure ssg-supplemental.sh contains the hardening scripts you want to be performed. 
+
 Execute the stig-overcloud script
-
 Get a cup of coffee
-
 Deploy your stigged image
-
 Get another cup of coffee
 
 ### Prereqs
-You will need your RHN username, password and a pool id to get software from the internet for the overcloud image
+You will need your RHN username, password and a pool id to get software from Red Hat for the overcloud image
 
 
+Why does this exist
+
+Many openstack users just want to get it up and running, 
+
+and security of the cloud is an after thought. With this simple script
+
+You can deploy your openstack cloud and have a better security profile
+
+OOB. It takes ten minutes... SECURE YOUR STUFF
+
+
+## Issues
+
+Currently there is a scheduling issue when deploying using whole cloud images
+So by default this has been disabled
