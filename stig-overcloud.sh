@@ -44,8 +44,8 @@ virt-customize -a overcloud-full.qcow2 --run-command 'subscription-manager unreg
 echo "##############################"
 echo "# Creating Partitioned Image #"
 echo "##############################"
-./whole-disk-image.py
-mv /tmp/overcloud-full-partitioned.qcow2 ./overcloud-full.qcow2
+#./whole-disk-image.py
+#mv /tmp/overcloud-full-partitioned.qcow2 ./overcloud-full.qcow2
 sync
 virt-customize --selinux-relabel -a overcloud-full.qcow2
 echo "######################################"
