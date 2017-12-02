@@ -11,9 +11,7 @@ Add to following to your deployment script
     -e /home/stack/templates/disable-stigged-services.yaml \
     -e /home/stack/templates/post-deploy-stig.yaml \
 
-If you are stigging the generic rhel-7-kvm-image, please edit the export variable at the top of stig-overcloud.sh with the file name
-
-of the image you would like to harden. 
+If you are stigging the generic rhel-7-kvm-image, please edit the export variable at the top of stig-overcloud.sh with the file name of the image you would like to harden. 
 
     sed -i "s/export image=overcloud-full.qcow2/export image=rhel-server-7.4-x86_64-kvm.qcow2/g" stig-overcloud.sh
 
