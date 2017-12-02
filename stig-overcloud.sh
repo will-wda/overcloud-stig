@@ -9,11 +9,11 @@ read -p "Subscritpion pool id:" pool_id
 oscap info /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml |grep xccdf_org.ssgproject.content|sed -e 's/^[[:space:]]*//'|cut -d "_" -f4
 read -p "Select a Profile (copy and paste):" profile
 read -p "Do you want to apply addtional hardening from ssg-supplemental? (y/n)" morehard
-#rm -f overcloud-full* ironic-python-agent*
+rm -f overcloud-full* ironic-python-agent*
 echo "##########################"
 echo "# Getting Factory Images #"
 echo "##########################"
-#for i in /usr/share/rhosp-director-images/overcloud-full-latest-11.0.tar /usr/share/rhosp-director-images/ironic-python-agent-latest-11.0.tar; do tar -xvf $i; done
+for i in /usr/share/rhosp-director-images/overcloud-full-latest-11.0.tar /usr/share/rhosp-director-images/ironic-python-agent-latest-11.0.tar; do tar -xvf $i; done
 sync
 echo "####################################"
 echo "# Subscribing and pulling packages #"
