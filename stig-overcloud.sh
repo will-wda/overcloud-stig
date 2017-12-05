@@ -21,9 +21,9 @@ fi
 ########################################################
 if [[ $skipinquisition =~ ^[Yy]$ ]]
 then
-  export name=rhnusername
-  export password=rhnpassword
-  export pool_id=rhnpoolid
+  export name=$rhnusername
+  export password=$rhnpassword
+  export pool_id=$rhnpoolid
   export profile=stig-rhel7-disa
   export morehard=y
   export wholecloud=n
